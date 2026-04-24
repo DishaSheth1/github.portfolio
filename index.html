@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Disha's Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background:#0b2f3a;
+  color:white;
+}
+
+/* ---------- NAVBAR ---------- */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: #04242b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  z-index: 1001;
+}
+
+header h2 {
+  font-size: 20px;
+}
+
+.menu-toggle{
+  width:32px;
+  height:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  cursor:pointer;
+}
+
+.menu-toggle span{
+  height:3px;
+  width:100%;
+  background:white;
+  border-radius:3px;
+  transition:0.4s;
+}
+/* Turn ☰ into X when menu is open */
+.menu-open .menu-toggle span:nth-child(1){
+  transform:rotate(45deg) translate(6px,6px);
+}
+.menu-open .menu-toggle span:nth-child(2){
+  opacity:0;
+}
+.menu-open .menu-toggle span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
+/* ---------- RIGHT SLIDE MENU ---------- */
+#side-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 50vh;
+  background: #04242b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;          /* space for ✖ */
+  gap: 30px;
+  transition: right 0.4s ease;
+  z-index: 1000;
+}
+
+
+#side-menu.active {
+  right: 0;
+}
+
+#side-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+#side-menu a:hover {
+  color: #7ee6ff;
+}
+/* ---------- CLOSE BUTTON ---------- */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.close-btn:hover {
+  color: #7ee6ff;
+  transform: rotate(90deg);
+}
+
+
+
+.close-btn:hover {
+  color: #7ee6ff;
+  transform: rotate(90deg);
+}
+
+
+/* ---------- SECTIONS ---------- */
+section {
+  min-height:100vh;
+  padding-top:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+/* HOME */
+#home{
+  background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+  url("background1.jpeg") center/cover no-repeat;
+}
+
+.hero-layout{
+  max-width:1100px;
+  width:100%;
+  display:flex; 
+  align-items:center; 
+  justify-content:space-between;
+  gap:40px;
+  padding:40px;
+}
+
+.hero-text{
+  flex:1;
+  text-align:left;
+}
+.hero-text h1{
+  font-size:42px;
+  margin-bottom:10px;
+}
+.hero-text p{
+  margin-bottom:20px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:15px;
+}
+.btn{
+  padding:10px 22px;
+  background:#1f4d5c;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+}
+.cv-btn{
+  background:#1f515c;
+}
+
+.hero-img-box{
+  width:260px;
+  height:350px;
+  border-radius:12px;
+  overflow:hidden;
+  /* border:4px solid #3c6069; */
+  box-shadow:0 0 25px rgba(126,230,255,.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* HOVER EFFECT */
+.hero-img-box:hover{
+  transform: scale(1.08) translateY(-6px);
+  box-shadow:0 0 45px rgba(115, 139, 145, 0.9);
+  border-color:#30525a;
+}
+
+.hero-img-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+@media(max-width:768px){
+  .hero-layout{
+    flex-direction:
+    column-reverse;
+    text-align:center;
+  }
+  .hero-buttons{
+    justify-content:center;
+  }
+}
+
+/* ---------- ABOUT ---------- */
+/* #about { background:#4b6974; } */
+
+.about {
+  max-width:800px;
+  margin:50px auto;
+  padding:0 20px;
+}
+
+.about h2 {
+  font-size:2rem;
+  color:rgb(56, 156, 156);
+  text-align:center;
+  margin-bottom:40px;
+}
+
+.about p {
+  line-height:1.6;
+  font-size:1rem;
+  margin-bottom:25px;
+}
+
+.about h3 {
+  color:rgb(135,237,255);
+  margin-top:30px;
+}
+
+/* ---------- SKILLS ---------- */
+.skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+
+.skill-btn {
+      background-color: transparent;
+      display: inline-block;
+      color: rgb(88, 111, 114);
+      padding: 10px 20px;
+      /* border: 2px solid rgb(123, 138, 141); */
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: transform 0.3s, background 0.3s, color 0.3s;
+    }
+
+ .skill-btn:hover {
+  transform: translateY(-5px);
+  box-shadow:0 6px 12px rgba(28, 88, 100, 0.3); /* zoom in */
+  /* background-color: #36e1ff; optional color change */
+}
+
+
+@keyframes fadeUp {
+  to {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- EDUCATION ---------- */
+.education { margin-top:20px; }
+
+.edu-item {
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-weight:bold;
+}
+
+.edu-year {
+  color: rgba(250, 250, 230, 0.603);
+  width: 100px; /* adjust width as needed */
+  text-align: right; /* aligns the year neatly */
+}
+
+
+/* ---------- EXPERIENCE ---------- */
+.experience { margin-top:10px; color:#eeeeee; }
+
+.exp-box { margin-bottom:15px; }
+
+.exp-header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.exp-role {
+  font-weight:bold;
+  color:#eeeeee;
+  font-size:17px;
+}
+
+.exp-duration {
+  font-size:14px;
+  color:rgb(200,200,200);
+}
+
+.exp-company {
+  font-size:15px;
+  margin-bottom:10px;
+  color:#6b96a1;
+}
+
+.exp-desc {
+  font-size:15px;
+  line-height:1.6;
+  color:#e0e0e0;
+}
+
+/* ---------- SERVICES ---------- */
+main {
+
+  padding-top: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 90px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+
+    main h1 {
+      font-size: 2rem;
+      color: rgb(48, 160, 160);
+      margin-bottom: 15px;
+      text-align: center;
+      
+    }
+     /* main h1:hover {
+      color: rgb(76, 92, 94);
+      transform: translateX(5px);
+    } */
+
+    main p {
+      color: #ccc;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    ul.services-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.services-list li {
+      padding: 15px 0;
+      margin: 10px 0;
+      border-top: 2px solid rgba(135,237,255,0.3);
+      transition: all 0.3s ease;
+      cursor: default;
+    }
+
+    ul.services-list li:hover {
+      color: rgb(162, 186, 190);
+      /* transform: translateX(5px); */
+    }
+/* ---------- PROJECTS ---------- */
+#projects {
+  background:#031b24;
+  padding:50px 20px;
+  text-align:center;
+}
+
+#projects h2 {
+  font-size:2rem;
+  color:rgb(56,156,156);
+  margin-bottom:40px;
+}
+
+.project-container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+}
+
+.project-box {
+  background:#0b3a42;
+  width:300px;
+  border-radius:10px;
+  overflow:hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position:relative;
+}
+
+.project-box:hover {
+  transform: translateY(-5px);
+  box-shadow:0 6px 12px rgba(155, 136, 136, 0.3);
+}
+
+.project-box img {
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.project-title {
+  font-size:18px;
+  /* font-weight:bold; */
+  padding:15px;
+  color:white;
+}
+
+/* ---------- CONTACT ---------- */
+.contact-wrapper{
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+/* .contact-glass-box{
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+  padding:50px 40px;
+  max-width:1100px;
+  width:90%;
+  box-shadow:0 15px 40px rgba(0,0,0,0.5);
+} */
+
+.contact-glass-box h2{
+  text-align:center;
+  font-size:2.3rem;
+  color:#264d55;
+}
+
+.contact-sub{
+  text-align:center;
+  color:#ddd;
+  margin:15px 0 40px;
+}
+
+.contact-cards{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:25px;
+}
+.contact-cards a {
+  text-decoration: none;
+  color:#ddd;
+  display: block;
+}
+
+.contact-title{
+  font-size:2.4rem;
+  color:#4eabc2;
+  margin-bottom:10px;
+  text-align:center;
+}
+
+.contact-top-sub{
+  color:#ccc;
+  margin-bottom:30px;
+  text-align:center;
+}
+
+
+.glass-card{
+  background: rgba(255,255,255,0.03);
+  border: 1.5px solid rgba(126,230,255,0.35);
+  border-radius:10px;
+  padding:22px;
+  text-align:center;
+  /* color:#cfeff5; */
+  box-shadow:
+    inset 0 0 8px rgba(44, 183, 218, 0.25),
+    0 0 12px rgba(0,0,0,0.5);
+  transition:0.3s ease;
+}
+
+.glass-card:hover{
+  background: rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 0 12px rgba(87, 126, 136, 0.45),
+    0 0 18px rgba(86, 149, 165, 0.4);
+  transform: translateY(-6px);
+}
+
+
+/* Responsive */
+@media(max-width:768px){
+  .contact-cards{grid-template-columns:repeat(2,1fr);}
+}
+@media(max-width:480px){
+  .contact-cards{grid-template-columns:1fr;}
+}
+
+
+/* ---------- FOOTER ---------- */
+footer {
+  background:#0b3a42;
+  color:white;
+  padding:40px 20px;
+  text-align:left;
+}
+
+footer a { color:white; text-decoration:none; }
+
+footer a:hover { color:#7ee6ff; }
+
+footer .footer-container {
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:30px;
+}
+
+footer .footer-container div { flex:1; min-width:180px; }
+
+footer h3 { margin-bottom:10px; }
+
+footer .social a { font-size:20px; margin-right:10px; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h2>Disha's Portfolio</h2>
+ <div class="menu-toggle" onclick="toggleMenu()">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+</header>
+<!-- SLIDE MENU -->
+<div id="side-menu">
+  <span class="close-btn" onclick="toggleMenu()">&times;</span>
+
+  <a href="#home" onclick="toggleMenu()">Home</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#projects" onclick="toggleMenu()">Projects</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+<section id="home">
+  <div class="hero-layout">
+    <div class="hero-text">
+      <h1 id="typing-main"></h1>
+      <p id="typing-sub"></p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn">View Projects</a>
+        <a href="Resume.pdf" class="btn cv-btn" download>Download CV</a>
+      </div>
+    </div>
+
+    <div class="hero-img-box">
+      <img src="disha.jpeg" alt="Disha Photo">
+    </div>
+
+  </div>
+</section>
+
+<!-- About Me Section -->
+<section id="about" class="about">
+
+    <h2>About Me</h2>
+    <p>Hi, I'm <strong>Disha Sheth</strong>, a passionate web developer and web designer specializing in building modern, responsive, and user-friendly websites. I enjoy turning ideas into functional and beautiful digital experiences.</p>
+
+    <h3>Skills</h3>
+    <div class="skills">
+      <button class="skill-btn">PHP</button>
+      <button class="skill-btn">PYTHON</button>
+      <button class="skill-btn">ANDROID</button>
+      <button class="skill-btn">ASP.NET</button>
+      <button class="skill-btn">BOOTSTRAP</button>
+      <button class="skill-btn">EDITING</button>
+    </div>
+    
+ <h3>Education</h3>
+    <div class="education">
+      <div class="edu-item">
+        <p><span class="edu-degree">Bachelor of Computer Applications (BCA)</span> - RP Bhalodia College</p>
+        <span class="edu-year">2021 - 2023</span>
+      </div>
+      <div class="edu-item">
+        <p><span class="edu-degree">Master of Computer Applications (MCA)</span> - Atmiya University</p>
+        <span class="edu-year">2023 - 2025</span>
+      </div>
+    </div>
+    <h3>Experience</h3>
+<div class="experience">
+  <div class="exp-box">
+    <div class="exp-header">
+      <span class="exp-role">Python Developer Intern</span>
+      <span class="exp-duration">6 Months</span>
+    </div>
+    <div class="exp-company">Imbuesoft LLP</div>
+    <div class="exp-desc">
+      Worked as a Python Developer at Imbuesoft LLP, applying expertise in Django to build and maintain scalable web applications. 
+      Collaborated with team members to analyze requirements, design solutions, and implement new features. 
+      Ensured code quality through unit testing and resolved technical issues for smooth application performance.
+    </div>
+  </div>
+</div>
+
+</section>
+<section id="services">
+ <main>
+  <h1>My Services</h1>
+  <p>I offer a range of creative and technical services to help bring your ideas to life.</p>
+  <ul class="services-list">
+    <li><strong>Web Design:</strong> Modern, responsive, and visually appealing websites.</li>
+    <li><strong>Web Development:</strong> Full-stack development using HTML, CSS, JavaScript, and backend technologies.</li>
+    <li><strong>Graphics Design:</strong> Logos, banners, social media graphics, and UI/UX design.</li>
+    <li><strong>SEO Optimization:</strong> Making websites faster and search-engine friendly.</li>
+    <li><strong>Website Maintenance:</strong> Regular updates, bug fixes, and feature additions.</li>
+  </ul>
+</main>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="project-container">
+    <div class="project-box">
+      <img src="air.jpg" alt="Project 1">
+      <div class="project-title">AIRLINES RESERVATION SYSTEM</div>
+    </div>
+    <div class="project-box">
+      <img src="pizz.jpg" alt="Project 2">
+      <div class="project-title">PIZZA ORDERING SYSTEM</div>
+    </div>
+    <div class="project-box">
+      <img src="a digital.jpg" alt="Project 3">
+      <div class="project-title">A DIGITAL PLATFORM FOR ACADEMIC PLANNING AND STUDENT SERVICES</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+
+  <!-- OUTSIDE GLASS BOX -->
+  <h2 class="contact-title">Connect With Me</h2>
+  <p class="contact-top-sub">
+    Let's build something amazing together ✨
+  </p>
+
+  <div class="contact-wrapper">
+    <div class="contact-glass-box">
+
+      <div class="contact-cards">
+  <a href="mailto:disha@example.com" class="glass-card">
+    <h4>Email</h4>
+    <p>shethdisha9@gmail.com</p>
+  </a>
+
+  <a href="tel:+919XXXXXXXXX" class="glass-card">
+    <h4>Phone</h4>
+    <p>+91 9XXXXXXXXX</p>
+  </a>
+
+  <a href="https://github.com/ShethDisha" target="_blank" class="glass-card">
+    <h4>GitHub</h4>
+    <p>github.com/ShethDisha</p>
+  </a>
+
+  <a href="https://www.linkedin.com/in/disha-sheth-06a904316" target="_blank" class="glass-card">
+    <h4>LinkedIn</h4>
+    <p>disha-sheth</p>
+  </a>
+</div>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>Disha's Portfolio</h3>
+      <p>Building modern, creative, and user-friendly web solutions. Always learning & growing.</p>
+    </div>
+    
+    
+  <div style="text-align:center; margin-top:30px; font-size:14px; color:rgb(200,200,200);">
+    &copy; 2025 disha's portfolio.com | All rights reserved.
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById("side-menu").classList.toggle("active");
+}
+
+
+/* ===== CONTINUOUS TYPING ANIMATION (NO | CURSOR) ===== */
+const mainText = "Welcome to My Portfolio";
+const subText  = "Discover my skills and projects";
+
+let mIndex = 0;
+let sIndex = 0;
+let phase = 0;
+
+const mainEl = document.getElementById("typing-main");
+const subEl  = document.getElementById("typing-sub");
+
+function typingEffect(){
+  if(phase === 0){
+    mainEl.textContent = mainText.slice(0, ++mIndex);
+    if(mIndex === mainText.length) phase = 1;
+  }
+  else if(phase === 1){
+    subEl.textContent = subText.slice(0, ++sIndex);
+    if(sIndex === subText.length){
+      setTimeout(() => phase = 2, 1500);
+    }
+  }
+  else{
+    mainEl.textContent = mainText.slice(0, --mIndex);
+    subEl.textContent  = subText.slice(0, --sIndex);
+    if(mIndex === 0){
+      phase = 0;
+    }
+  }
+  setTimeout(typingEffect, 90);
+}
+
+typingEffect();
+
+/* SKILL FADE-UP */
+window.addEventListener('DOMContentLoaded', () => {
+  const skills = document.querySelectorAll('.skill-btn');
+  skills.forEach((btn, index) => {
+    btn.style.opacity = "0";
+    btn.style.transform = "translateY(20px)";
+    btn.style.animation = "fadeUp 0.5s forwards";
+    btn.style.animationDelay = `${index * 0.15}s`;
+  });
+});
+
+</script>
+<script>
+function toggleMenu(){
+  document.getElementById("side-menu").classList.toggle("active");
+  document.body.classList.toggle("menu-open");
+}
+</script>
+</body>
+</html>
